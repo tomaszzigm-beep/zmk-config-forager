@@ -1,0 +1,99 @@
+/ {
+    // Include definitions for mouse keycodes
+    #include <dt-bindings/zmk/pointing.h>
+    #include <dt-bindings/zmk/mouse.h>
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base {
+            display-name = "Base";
+            bindings = < 
+                &kp Q    &kp W    &kp F    &kp P      &kp B              // Row 0: Colemak-DH (Q W F P B)
+                &kp A    &kp R    &kp S    &kp T      &kp G              // Row 1: Colemak-DH (A R S T D -> D moved, G on left)
+                &mt LGUI Z  &mt LALT X  &mt LSHFT C  &mt LCTRL D  &kp V // Row 2: Bottom row mods (Win, Alt, Shift, Ctrl, V)
+                &kp SPACE   &lt 2 ENTER                               // Thumbs: Space, Enter (tap) / Func layer (hold)
+                &sl 1       &none >;                                   // Thumbs (right side): One-shot Sym layer, (unused second thumb)
+        };
+
+        sym_nav {  // Symbols / Navigation layer (Layer 1)
+            display-name = "Sym/Nav";
+            bindings = <
+                &kp LEFT_PAREN   &kp RIGHT_PAREN   &kp LBKT       &kp RBKT        &kp EQUAL        // Row 0: '(' ')' '[' ']' '='
+                &kp N7           &kp N8            &kp NO         &kp NO          &kp DELETE       // Row 1: '7' '8' (others free, Delete on Backspace key)
+                &kp N2           &kp N3            &kp N4         &kp N5          &kp N6           // Row 2: Numbers 2–6 in sequence
+                &kp SPACE        &kp ENTER                                                 // Thumbs: Space, Enter (retain space/enter on this layer)
+                &trans           &trans >;                                               // (right side thumbs not used on this layer)
+            // Right half (navigation cluster) overrides:
+            bindings += <                                      // Bindings continued for second half
+                &kp HOME   &kp PG_UP    &kp UP      &kp PG_DN   &kp END      // Map to Home, PgUp, Up, PgDn, End on right half
+                &kp NO     &kp LEFT     &kp DOWN    &kp RIGHT   &kp NO       // Arrow keys cluster (Left, Down, Right)
+                &kp NO     &kp NO       &kp NO      &kp NO      &kp NO       // (fill remaining positions if any with no action)
+                &trans     &trans
+                &trans     &trans >;
+        };
+
+        fun_mouse {  // Function / Mouse / Media layer (Layer 2)
+            display-name = "Func/Media";
+            bindings = <
+                &kp F6      &kp F7       &kp F8       &kp F9        &kp F10      // Row 0: Function keys F6–F10
+                &kp F1      &kp F2       &kp F3       &kp F4        &kp F5       // Row 1: Function keys F1–F5
+                &kp VOLD    &kp MUTE     &kp VOLU     &kp C_PLAY    &kp C_NEXT   // Row 2: Media keys (Vol↓, Mute, Vol↑, Play/Pause, Next)
+                &mkp LCLK   &mkp RCLK                                                   // Thumbs (left side): Mouse left click, right click:contentReference[oaicite:8]{index=8}
+                &trans      &trans >;                                                   // (right side thumbs not used in this layer)
+
+            // Left half (mouse movement) overrides:
+            bindings += <
+                &mmv MOVE_LEFT   &mmv MOVE_DOWN   &mmv MOVE_UP   &mmv MOVE_RIGHT   &trans   // WASD as mouse move (Left, Down, Up, Right):contentReference[oaicite:9]{index=9}:contentReference[oaicite:10]{index=10}
+                &trans           &trans          &trans         &trans            &trans
+                &trans           &trans          &trans         &trans            &trans
+                &trans           &trans
+                &trans           &trans >;
+        };
+
+        // Combo definitions (active on all layers)
+        combos {
+            compatible = "zmk,combos";
+            combo_wf_esc {            // W + F -> Escape
+                timeout-ms = <50>;
+                key-positions = <0 2>;        // W (row0 col1), F (row0 col2):contentReference[oaicite:13]{index=13}:contentReference[oaicite:14]{index=14}
+                bindings = <&kp ESC>;
+            };
+            combo_fp_exclam {         // F + P -> '!' (Exclamation)
+                timeout-ms = <50>;
+                key-positions = <2 3>;        // F (0,2), P (0,3)
+                bindings = <&kp EXCL>;
+            };
+            combo_lu_minus {          // L + U -> '-' (Minus)
+                timeout-ms = <50>;
+                key-positions = <5 7>;        // L (right 0,1), U (right 0,2)
+                bindings = <&kp MINUS>;
+            };
+            combo_uy_quote {          // U + Y -> '\'' (Quote)
+                timeout-ms = <50>;
+                key-positions = <7 8>;        // U (right 0,2), Y (right 0,3)
+                bindings = <&kp SQT>;
+            };
+            combo_wfp_caps {          // W + F + P -> Caps Lock
+                timeout-ms = <50>;
+                key-positions = <0 2 3>;      // W (0,1), F (0,2), P (0,3)
+                bindings = <&kp CAPSLOCK>;
+            };
+            combo_hcp_sym {           // H + , + . -> Toggle Symbols layer
+                timeout-ms = <50>;
+                key-positions = <12 13 14>;   // H (right 2,1), ',' (right 2,2), '.' (right 2,3)
+                bindings = <&tog 1>;
+            };
+            combo_luy_fun {           // L + U + Y -> Toggle Function layer
+                timeout-ms = <50>;
+                key-positions = <5 7 8>;      // L (right 0,1), U (right 0,2), Y (right 0,3)
+                bindings = <&tog 2>;
+            };
+            combo_nei_home {          // N + E + I -> Return to Base layer
+                timeout-ms = <50>;
+                key-positions = <6 7 8>;      // N (right 1,1), E (right 1,2), I (right 1,3)
+                bindings = <&tog 1 &tog 2>;   // (Toggle off both layers to go Home)
+            };
+        };
+    };
+};
