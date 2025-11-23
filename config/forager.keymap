@@ -8,13 +8,13 @@
         base {
             display-name = "Base";
             bindings = <
-                /* LEFT HALF (0–16) */
+                /* LEFT HALF 0–16 */
                 &kp Q      &kp W      &kp F      &kp P      &kp B
                 &kp A      &kp R      &kp S      &kp T      &kp G
                 &kp Z      &kp X      &kp C      &kp D      &kp V
                 &kp SPACE  &kp LSHIFT &kp ENTER
 
-                /* RIGHT HALF (17–33) */
+                /* RIGHT HALF 17–33 */
                 &kp J      &kp L      &kp U      &kp Y      &kp SEMICOLON
                 &kp H      &kp N      &kp E      &kp I      &kp O
                 &kp K      &kp M      &kp COMMA  &kp DOT    &kp SLASH
@@ -28,16 +28,16 @@
         sym_nav {
             display-name = "Sym/Nav";
             bindings = <
-                /* LEFT HALF (0–16) */
+                /* LEFT HALF */
                 &kp LBKT   &kp RBKT   &kp LPAR   &kp RPAR   &kp EQUAL
                 &kp N7     &kp N8     &kp N9     &kp MINUS  &kp N0
                 &kp N1     &kp N2     &kp N3     &kp N4     &kp N5
                 &trans     &trans     &trans
 
-                /* RIGHT HALF (17–33) */
-                &kp HOME   &kp PG_UP  &kp UP     &kp PG_DN     &kp END
-                &kp LEFT   &kp DOWN   &kp RIGHT  &kp DELETE    &kp BSPC
-                &trans     &trans     &trans     &trans        &trans
+                /* RIGHT HALF */
+                &kp HOME   &kp PG_UP  &kp UP     &kp PG_DN   &kp END
+                &kp LEFT   &kp DOWN   &kp RIGHT  &kp DELETE  &kp BSPC
+                &trans     &trans     &trans     &trans      &trans
                 &trans     &trans
             >;
         };
@@ -48,17 +48,17 @@
         fun_mouse {
             display-name = "Fun/Mouse";
             bindings = <
-                /* LEFT HALF (0–16) */
+                /* LEFT HALF */
                 &kp F1     &kp F2     &kp F3     &kp F4       &kp F5
                 &kp F6     &kp F7     &kp F8     &kp F9       &kp F10
                 &kp VOLD   &kp MUTE   &kp VOLU   &kp C_PREV   &kp C_NEXT
-                &mkp LCLK   &mkp RCLK  &trans
+                &mkp LCLK  &mkp RCLK  &trans
 
-                /* RIGHT HALF (17–33) */
-                &mmv MOVE_LEFT  &mmv MOVE_UP     &mmv MOVE_DOWN   &mmv MOVE_RIGHT  &trans
-                &trans          &trans           &trans           &trans           &trans
-                &trans          &trans           &trans           &trans           &trans
-                &trans          &trans
+                /* RIGHT HALF */
+                &mmv LEFT  &mmv UP    &mmv DOWN  &mmv RIGHT   &trans
+                &trans     &trans     &trans     &trans       &trans
+                &trans     &trans     &trans     &trans       &trans
+                &trans     &trans
             >;
         };
 
@@ -70,19 +70,19 @@
 
             combo_esc {
                 timeout-ms = <30>;
-                key-positions = <1 2>;   /* W + F */
+                key-positions = <1 2>; /* W + F */
                 bindings = <&kp ESC>;
             };
 
             combo_excl {
                 timeout-ms = <30>;
-                key-positions = <2 3>;  /* F + P */
+                key-positions = <2 3>; /* F + P */
                 bindings = <&kp EXCL>;
             };
 
             combo_minus {
                 timeout-ms = <30>;
-                key-positions = <20 22>; /* L + U (right half positions) */
+                key-positions = <20 22>; /* L + U */
                 bindings = <&kp MINUS>;
             };
 
