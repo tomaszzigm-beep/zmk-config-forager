@@ -1,0 +1,114 @@
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        /* ============================================================
+         *  BASE LAYER — MINI-RYOKU (Colemak-DH)
+         * ========================================================== */
+        base {
+            display-name = "Base";
+            bindings = <
+                /* LEFT HALF 0–16 */
+                &kp Q      &kp W      &kp F      &kp P      &kp B
+                &kp A      &kp R      &kp S      &kp T      &kp G
+                &kp Z      &kp X      &kp C      &kp D      &kp V
+                &kp SPACE  &kp LSHIFT &kp ENTER
+
+                /* RIGHT HALF 17–33 */
+                &kp J      &kp L      &kp U      &kp Y      &kp SEMICOLON
+                &kp H      &kp N      &kp E      &kp I      &kp O
+                &kp K      &kp M      &kp COMMA  &kp DOT    &kp SLASH
+                &kp BSPC   &kp RALT
+            >;
+        };
+
+        /* ============================================================
+         *  SYMBOL / NAVIGATION LAYER (Layer 1)
+         * ========================================================== */
+        sym_nav {
+            display-name = "Sym/Nav";
+            bindings = <
+                /* LEFT HALF */
+                &kp LBKT   &kp RBKT   &kp LPAR   &kp RPAR   &kp EQUAL
+                &kp N7     &kp N8     &kp N9     &kp MINUS  &kp N0
+                &kp N1     &kp N2     &kp N3     &kp N4     &kp N5
+                &trans     &trans     &trans
+
+                /* RIGHT HALF */
+                &kp HOME   &kp PG_UP  &kp UP     &kp PG_DN   &kp END
+                &kp LEFT   &kp DOWN   &kp RIGHT  &kp DELETE  &kp BSPC
+                &trans     &trans     &trans     &trans      &trans
+                &trans     &trans
+            >;
+        };
+
+        /* ============================================================
+         *  FUNCTION / MEDIA / MOUSE LAYER (Layer 2)
+         * ========================================================== */
+        fun_mouse {
+            display-name = "Fun/Mouse";
+            bindings = <
+                /* LEFT HALF */
+                &kp F1     &kp F2     &kp F3     &kp F4       &kp F5
+                &kp F6     &kp F7     &kp F8     &kp F9       &kp F10
+                &kp VOLD   &kp MUTE   &kp VOLU   &kp C_PREV   &kp C_NEXT
+                &mkp LCLK  &mkp RCLK  &trans
+
+                /* RIGHT HALF */
+                &mmv LEFT  &mmv UP    &mmv DOWN  &mmv RIGHT   &trans
+                &trans     &trans     &trans     &trans       &trans
+                &trans     &trans     &trans     &trans       &trans
+                &trans     &trans
+            >;
+        };
+
+        /* ============================================================
+         *  COMBOS
+         * ========================================================== */
+        combos {
+            compatible = "zmk,combos";
+
+            combo_esc {
+                timeout-ms = <30>;
+                key-positions = <1 2>; /* W + F */
+                bindings = <&kp ESC>;
+            };
+
+            combo_excl {
+                timeout-ms = <30>;
+                key-positions = <2 3>; /* F + P */
+                bindings = <&kp EXCL>;
+            };
+
+            combo_minus {
+                timeout-ms = <30>;
+                key-positions = <20 22>; /* L + U */
+                bindings = <&kp MINUS>;
+            };
+
+            combo_quote {
+                timeout-ms = <30>;
+                key-positions = <22 23>; /* U + Y */
+                bindings = <&kp SQT>;
+            };
+
+            combo_caps {
+                timeout-ms = <30>;
+                key-positions = <1 2 3>; /* W + F + P */
+                bindings = <&kp CAPSLOCK>;
+            };
+
+            combo_layer_sym {
+                timeout-ms = <30>;
+                key-positions = <27 28 29>; /* H + , + . */
+                bindings = <&tog 1>;
+            };
+
+            combo_layer_fn {
+                timeout-ms = <30>;
+                key-positions = <20 22 23>; /* L + U + Y */
+                bindings = <&tog 2>;
+            };
+        };
+    };
+};
